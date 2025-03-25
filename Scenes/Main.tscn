@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bui2ql23hluso"]
+[gd_scene load_steps=11 format=3 uid="uid://bui2ql23hluso"]
 
 [ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="1_db7ni"]
 [ext_resource type="PackedScene" uid="uid://bcgmm3kwwoixs" path="res://Scenes/House/testFloor.tscn" id="2_lukw2"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bicky71uy4yvc" path="res://Scenes/Furniture/chair.tscn" id="7_puk4e"]
 [ext_resource type="PackedScene" uid="uid://dqdgish6x24gy" path="res://Scenes/Furniture/couch.tscn" id="8_iikn2"]
 [ext_resource type="PackedScene" uid="uid://rdhg74yt0kbk" path="res://Scenes/Furniture/bed.tscn" id="9_qkn7m"]
+[ext_resource type="PackedScene" uid="uid://bw3b73d7eo3y3" path="res://Scenes/EnemyScenes/crawlerSpawner.tscn" id="10_071hr"]
 
 [node name="Main" type="Node"]
 
@@ -16,35 +17,38 @@
 show_behind_parent = true
 position = Vector2(16, 62)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_db7ni")]
+[node name="myHero" parent="." instance=ExtResource("1_db7ni")]
 
 [node name="small_dresser" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("3_gmco7")]
 position = Vector2(-236, -178)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="large_dresser" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("4_w0rbr")]
 position = Vector2(-86, -183)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="table" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("5_2irpj")]
 position = Vector2(69, -184)
 angular_damp = 22.0
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="chair" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("7_puk4e")]
 position = Vector2(-85, -320)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="couch" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("8_iikn2")]
 position = Vector2(119, -337)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="bed" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("9_qkn7m")]
 position = Vector2(-55, -463)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="bathtub" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("4_lvbdt")]
 position = Vector2(-267, -310)
-pull_marker = NodePath("../CharacterBody2D/puller/pull_marker")
+pull_marker = NodePath("../myHero/puller/pull_marker")
 
-[editable path="CharacterBody2D"]
+[node name="crawlerSpawner" parent="." instance=ExtResource("10_071hr")]
+position = Vector2(453, 27)
+
+[editable path="myHero"]

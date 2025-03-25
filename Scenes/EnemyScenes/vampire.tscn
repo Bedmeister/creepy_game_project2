@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ggjbayf1its"]
+
+[ext_resource type="Texture2D" uid="uid://ci76voo3jlxsr" path="res://Assets/Enemies/Vampire/spr_vampire_idle.png" id="1_mjpue"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxtcj"]
+size = Vector2(85, 58)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 8)
+shape = SubResource("RectangleShape2D_xxtcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mjpue")

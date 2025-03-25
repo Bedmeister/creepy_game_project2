@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwslptfnn8dlk"]
+
+[ext_resource type="Texture2D" uid="uid://c6gsjvfh7jt5w" path="res://Assets/Enemies/Zombie/idle.png" id="1_25js6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyp6u"]
+size = Vector2(131, 96)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 8)
+shape = SubResource("RectangleShape2D_hyp6u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_25js6")
