@@ -1,6 +1,6 @@
 extends Node2D
 
-var spawnInterval = 300
+var spawnInterval = 600
 var spawnTimer = spawnInterval
 var enemy = preload("res://Scenes/EnemyScenes/crawler.tscn")
 

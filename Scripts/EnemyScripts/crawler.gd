@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 const SPEED = 50.0
-const JUMP_VELOCITY = -400.0
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
 var targetNode # create var for future use of locatating hero
@@ -28,7 +27,7 @@ func makePath() -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void: # Detects hit player
 	player = body
 	if body.is_in_group("player"):
-		print("-10 hp")
+		print("enemy hitbox entered")
 
 
 func _on_timer_timeout() -> void:
