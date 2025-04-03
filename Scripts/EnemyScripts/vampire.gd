@@ -10,7 +10,7 @@ var health = 15
 var can_damage = true
 
 func _physics_process(delta: float) -> void:
-	rotate_enemy() #roate enemy
+	#rotate_enemy() #roate enemy
 
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * SPEED
