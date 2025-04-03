@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 
 const SPEED = 50.0
+const JUMP_VELOCITY = -400.0
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
 var targetNode # create var for future use of locatating hero
-var health = 100
+var health = 5
+var can_damage = true
 
 func _physics_process(delta: float) -> void:
 	var dir = to_local(nav.get_next_path_position()).normalized()
@@ -15,22 +17,24 @@ func _physics_process(delta: float) -> void:
 	animate()
 	
 	
+func take_damage(amount):
+	health -= amount
+	if health <= 0:
+		print("crawler died")
+		queue_free()
 
-
-	#if targetNode:#used to find hero
-		#print("found the hero!")
-	#	position = position.move_toward(targetNode.position, 2) #moves enemy towards hero.
-	#else: 
-	#	print("hero doesnt exist.")
 
 func makePath() -> void:
 	targetNode = get_node_or_null("/root/Main/myHero") #assigns hero to targetnode
-	nav.target_position = targetNode.global_position
+	if targetNode != null:
+		nav.target_position = targetNode.global_position
 
 func _on_hitbox_body_entered(body: Node2D) -> void: # Detects hit player
-	player = body
-	if body.is_in_group("player"):
-		print("enemy hitbox entered")
+	if body.is_in_group("player") and can_damage:
+		body.call("take_damage", 5)
+		can_damage = false
+		await get_tree().create_timer(1.0).timeout
+		can_damage = true
 
 
 func _on_timer_timeout() -> void:

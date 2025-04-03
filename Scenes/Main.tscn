@@ -49,7 +49,11 @@ rotation = -1.59408
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="crawlerSpawner" parent="." instance=ExtResource("10_071hr")]
+<<<<<<< HEAD
 position = Vector2(-178, -47)
+=======
+position = Vector2(8, 105)
+>>>>>>> b86ded009ba5e01b7adbe127fd120fccf408ab86
 
 [node name="vampireSpawner" parent="." instance=ExtResource("11_dsr4k")]
 visible = false

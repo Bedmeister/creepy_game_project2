@@ -1,24 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ce1ajp6icq74a"]
+[gd_scene load_steps=14 format=3 uid="uid://ce1ajp6icq74a"]
 
 [ext_resource type="Texture2D" uid="uid://b7rvkxwdusb62" path="res://Assets/Player/spr_player_idle.png" id="1_7obyx"]
 [ext_resource type="Script" path="res://Scripts/Player/my_hero.gd" id="1_fvkqk"]
 [ext_resource type="Texture2D" uid="uid://dyjsxytbru804" path="res://Assets/Player/Light.png" id="2_ul8ox"]
 [ext_resource type="Script" path="res://Scripts/Player/point_light_2d.gd" id="4_2w8kg"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y46yx"]
-atlas = ExtResource("1_7obyx")
-region = Rect2(0, 0, 148, 142)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_acrnt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y46yx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="Texture2D" uid="uid://bxi6oskdbax8x" path="res://Assets/Player/animations/melee_swing/spr_player_back_swing.png" id="5_vhxpx"]
+[ext_resource type="Texture2D" uid="uid://yudjx5sxrlp7" path="res://Assets/Player/animations/melee_swing/spr_player_front_swing.png" id="6_w6nvj"]
+[ext_resource type="Texture2D" uid="uid://d1qd7m03t450e" path="res://Assets/Player/animations/melee_swing/spr_player_impact_first.png" id="7_1cfc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8vtb"]
 size = Vector2(29, 41)
@@ -26,24 +14,53 @@ size = Vector2(29, 41)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_1cxja"]
 b = Vector2(25, 0)
 
-[sub_resource type="Gradient" id="Gradient_t45qe"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_213r4"]
+size = Vector2(41.5, 85.25)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jriy5"]
-gradient = SubResource("Gradient_t45qe")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.816239, 0.192308)
+[sub_resource type="Animation" id="Animation_r4ptc"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_7obyx"), ExtResource("5_vhxpx"), ExtResource("6_w6nvj"), ExtResource("7_1cfc8"), ExtResource("1_7obyx")]
+}
+
+[sub_resource type="Animation" id="Animation_mxsmh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7obyx")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6dil"]
+_data = {
+"RESET": SubResource("Animation_mxsmh"),
+"attack": SubResource("Animation_r4ptc")
+}
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
-collision_layer = 3
-collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_fvkqk")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["player"]]
 rotation = 1.5708
-sprite_frames = SubResource("SpriteFrames_acrnt")
+texture = ExtResource("1_7obyx")
 
 [node name="hitbox" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(-7, -6)
@@ -51,15 +68,14 @@ shape = SubResource("RectangleShape2D_h8vtb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="flashlight" type="PointLight2D" parent="."]
-position = Vector2(-1, -0.999999)
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-28, -9)
+rotation = 1.56536
 scale = Vector2(0.372029, 0.479543)
-color = Color(1, 0.994169, 0.993341, 1)
-blend_mode = 2
+color = Color(1, 0.783833, 0.75517, 1)
 shadow_enabled = true
-shadow_item_cull_mask = 3
 texture = ExtResource("2_ul8ox")
-offset = Vector2(575, -7.107)
+offset = Vector2(573.845, -7.10747)
 script = ExtResource("4_2w8kg")
 
 [node name="puller" type="Area2D" parent="." groups=["Puller", "puller"]]
@@ -73,9 +89,18 @@ shape = SubResource("SegmentShape2D_1cxja")
 [node name="pull_marker" type="Marker2D" parent="puller"]
 position = Vector2(33, -6)
 
-[node name="closeLight" type="PointLight2D" parent="."]
-scale = Vector2(1.9952, 1.81662)
-blend_mode = 2
-shadow_enabled = true
-shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_jriy5")
+[node name="AttackHitbox" type="Area2D" parent="."]
+position = Vector2(39, -7)
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(-3.75, 2)
+shape = SubResource("RectangleShape2D_213r4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i6dil")
+}
+
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://disufs56gyfoc" path="res://Assets/Enemies/Crawler/idle.png" id="2_xcoxn"]
 [ext_resource type="Texture2D" uid="uid://baofxa84cbcv8" path="res://Assets/Enemies/Crawler/crawler_3.png" id="3_61jfw"]
 
+<<<<<<< HEAD
 [sub_resource type="SpriteFrames" id="SpriteFrames_px6n8"]
 animations = [{
 "frames": [{
@@ -25,27 +26,38 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
+=======
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bspbo"]
+size = Vector2(69, 130)
+>>>>>>> b86ded009ba5e01b7adbe127fd120fccf408ab86
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfny"]
 size = Vector2(69.5, 126.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+rotation = 1.5708
 scale = Vector2(0.638889, 0.596154)
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-safe_margin = 4.0
 script = ExtResource("1_yw5q8")
 
+<<<<<<< HEAD
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_px6n8")
 animation = &"idle"
+=======
+[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_igxi3")
+>>>>>>> b86ded009ba5e01b7adbe127fd120fccf408ab86
 
-[node name="hitbox" type="Area2D" parent="." groups=["Enemy"]]
-scale = Vector2(0.704075, 0.749237)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_bspbo")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
-collision_mask = 3
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
@@ -53,14 +65,9 @@ position = Vector2(-1.75, -1.25)
 shape = SubResource("RectangleShape2D_etfny")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
-simplify_path = true
-avoidance_layers = 3
-avoidance_mask = 3
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
