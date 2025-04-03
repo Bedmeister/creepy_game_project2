@@ -10,7 +10,9 @@ var health = 100
 func _physics_process(delta: float) -> void:
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * SPEED
+	look_at(dir)
 	move_and_slide()
+	animate()
 	
 	
 
@@ -33,3 +35,10 @@ func _on_hitbox_body_entered(body: Node2D) -> void: # Detects hit player
 
 func _on_timer_timeout() -> void:
 	makePath() # Replace with function body.
+
+
+func animate():
+	if velocity == Vector2(0,0):
+		$AnimatedSprite2D.play("idle")
+	else:
+		$AnimatedSprite2D.play("crawl")

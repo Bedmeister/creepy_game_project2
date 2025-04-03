@@ -14,45 +14,50 @@
 
 [node name="Main" type="Node"]
 
-[node name="testFloor" parent="." instance=ExtResource("2_lukw2")]
-show_behind_parent = true
-position = Vector2(16, 62)
-
-[node name="myHero" parent="." instance=ExtResource("1_db7ni")]
-
 [node name="small_dresser" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("3_gmco7")]
-position = Vector2(-236, -178)
+position = Vector2(578, 570)
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="large_dresser" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("4_w0rbr")]
-position = Vector2(-86, -183)
+position = Vector2(36, 268)
+rotation = 1.56323
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="table" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("5_2irpj")]
-position = Vector2(69, -184)
+position = Vector2(285, 246)
+rotation = 1.60054
 angular_damp = 22.0
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="chair" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("7_puk4e")]
-position = Vector2(-85, -320)
+position = Vector2(352, 244)
+rotation = 1.47987
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="couch" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("8_iikn2")]
-position = Vector2(119, -337)
+position = Vector2(192, 237)
+rotation = -1.57205
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="bed" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("9_qkn7m")]
-position = Vector2(-55, -463)
+position = Vector2(231, 564)
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="bathtub" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("4_lvbdt")]
-position = Vector2(-267, -310)
+position = Vector2(471, 304)
+rotation = -1.59408
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="crawlerSpawner" parent="." instance=ExtResource("10_071hr")]
-position = Vector2(453, 27)
+position = Vector2(-178, -47)
 
 [node name="vampireSpawner" parent="." instance=ExtResource("11_dsr4k")]
+visible = false
 position = Vector2(68, 291)
+
+[node name="myHero" parent="." instance=ExtResource("1_db7ni")]
+position = Vector2(575, 298)
+
+[node name="Node2D" parent="." instance=ExtResource("2_lukw2")]
 
 [editable path="myHero"]

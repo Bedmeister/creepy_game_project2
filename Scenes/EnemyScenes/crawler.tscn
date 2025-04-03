@@ -1,10 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg63pxk5l5agg"]
+[gd_scene load_steps=6 format=3 uid="uid://dg63pxk5l5agg"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/crawler.gd" id="1_yw5q8"]
-[ext_resource type="Texture2D" uid="uid://b5tkrvcytxjco" path="res://Assets/Enemies/Crawler/spr_crawler_idle.png" id="2_igxi3"]
+[ext_resource type="Texture2D" uid="uid://disufs56gyfoc" path="res://Assets/Enemies/Crawler/idle.png" id="2_xcoxn"]
+[ext_resource type="Texture2D" uid="uid://baofxa84cbcv8" path="res://Assets/Enemies/Crawler/crawler_3.png" id="3_61jfw"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sgy5m"]
-light_mode = 2
+[sub_resource type="SpriteFrames" id="SpriteFrames_px6n8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xcoxn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_61jfw")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xcoxn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfny"]
 size = Vector2(69.5, 126.5)
@@ -18,9 +38,9 @@ wall_min_slide_angle = 0.0
 safe_margin = 4.0
 script = ExtResource("1_yw5q8")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_sgy5m")
-texture = ExtResource("2_igxi3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_px6n8")
+animation = &"idle"
 
 [node name="hitbox" type="Area2D" parent="." groups=["Enemy"]]
 scale = Vector2(0.704075, 0.749237)
