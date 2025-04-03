@@ -21,7 +21,7 @@ func take_damage(amount):
 		print("crawler died")
 		queue_free()
 
-
+	
 func makePath() -> void:
 	targetNode = get_node_or_null("/root/Main/myHero") #assigns hero to targetnode
 	if targetNode != null:

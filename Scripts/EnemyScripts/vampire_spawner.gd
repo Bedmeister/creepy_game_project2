@@ -2,7 +2,7 @@ extends Node2D
 
 var spawnInterval = 600
 var spawnTimer = spawnInterval
-var enemy = preload("res://Scenes/EnemyScenes/vampire.tscn")
+var enemy = preload("res://Scenes/EnemyScenes/vampire2.tscn")
 
 
 # Called when the node enters the scene tree for the first time.

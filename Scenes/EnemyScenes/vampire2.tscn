@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dia4muyeiuhae"]
+
+[ext_resource type="Script" path="res://Scripts/EnemyScripts/vampire.gd" id="1_w4kch"]
+[ext_resource type="Texture2D" uid="uid://ci76voo3jlxsr" path="res://Assets/Enemies/Vampire/spr_vampire_idle.png" id="2_a2juq"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2yuw3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erbsw"]
+size = Vector2(20, 15.4554)
+
+[node name="vampire" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_w4kch")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_2yuw3")
+texture = ExtResource("2_a2juq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.9138)
+scale = Vector2(4.2, 3.48276)
+shape = SubResource("RectangleShape2D_erbsw")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+visibility_layer = 2
+scale = Vector2(5.68235, 4.70173)
+shape = SubResource("RectangleShape2D_erbsw")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+simplify_path = true
+simplify_epsilon = 5.0
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

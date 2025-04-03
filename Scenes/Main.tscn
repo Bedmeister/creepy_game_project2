@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bui2ql23hluso"]
+[gd_scene load_steps=11 format=3 uid="uid://bui2ql23hluso"]
 
 [ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="1_db7ni"]
 [ext_resource type="PackedScene" uid="uid://bcgmm3kwwoixs" path="res://Scenes/House/testFloor.tscn" id="2_lukw2"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bicky71uy4yvc" path="res://Scenes/House/Furniture/chair.tscn" id="7_puk4e"]
 [ext_resource type="PackedScene" uid="uid://dqdgish6x24gy" path="res://Scenes/House/Furniture/couch.tscn" id="8_iikn2"]
 [ext_resource type="PackedScene" uid="uid://rdhg74yt0kbk" path="res://Scenes/House/Furniture/bed.tscn" id="9_qkn7m"]
-[ext_resource type="PackedScene" uid="uid://bw3b73d7eo3y3" path="res://Scenes/EnemyScenes/crawlerSpawner.tscn" id="10_071hr"]
 [ext_resource type="PackedScene" uid="uid://bdkuj0ilg7pny" path="res://Scenes/EnemyScenes/vampire_spawner.tscn" id="11_dsr4k"]
 
 [node name="Main" type="Node"]
@@ -49,10 +48,7 @@ pull_marker = NodePath("../myHero/puller/pull_marker")
 position = Vector2(-267, -310)
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
-[node name="crawlerSpawner" parent="." instance=ExtResource("10_071hr")]
-position = Vector2(8, 105)
-
 [node name="vampireSpawner" parent="." instance=ExtResource("11_dsr4k")]
-position = Vector2(68, 291)
+position = Vector2(-23, 220)
 
 [editable path="myHero"]
