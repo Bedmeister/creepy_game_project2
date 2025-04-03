@@ -3,29 +3,30 @@
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/crawler.gd" id="1_yw5q8"]
 [ext_resource type="Texture2D" uid="uid://b5tkrvcytxjco" path="res://Assets/Enemies/Crawler/spr_crawler_idle.png" id="2_igxi3"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sgy5m"]
-light_mode = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bspbo"]
+size = Vector2(69, 130)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_etfny"]
 size = Vector2(69.5, 126.5)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+rotation = 1.5708
 scale = Vector2(0.638889, 0.596154)
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-safe_margin = 4.0
 script = ExtResource("1_yw5q8")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_sgy5m")
 texture = ExtResource("2_igxi3")
 
-[node name="hitbox" type="Area2D" parent="." groups=["Enemy"]]
-scale = Vector2(0.704075, 0.749237)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1)
+shape = SubResource("RectangleShape2D_bspbo")
+
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 collision_layer = 2
-collision_mask = 3
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
@@ -33,14 +34,9 @@ position = Vector2(-1.75, -1.25)
 shape = SubResource("RectangleShape2D_etfny")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
-simplify_path = true
-avoidance_layers = 3
-avoidance_mask = 3
 debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

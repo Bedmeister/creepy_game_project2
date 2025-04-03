@@ -50,7 +50,7 @@ position = Vector2(-267, -310)
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
 [node name="crawlerSpawner" parent="." instance=ExtResource("10_071hr")]
-position = Vector2(453, 27)
+position = Vector2(8, 105)
 
 [node name="vampireSpawner" parent="." instance=ExtResource("11_dsr4k")]
 position = Vector2(68, 291)
