@@ -10,6 +10,8 @@ var max_force = 100
 # Health and Attack
 var health = 100
 
+@onready var audioSwing: AudioStreamPlayer2D = $AudioStreamPlayer2D #for bat swing sfx
+
 @onready var attack_hitbox = $AttackHitbox
 @onready var anim_player = $AnimationPlayer
 @onready var cam = $Camera2D
@@ -32,6 +34,7 @@ func _physics_process(_delta: float) -> void:
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		perform_attack()
+		audioSwing.play()
 		
 	if shake_timer > 0:
 		shake_timer -= delta
