@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cldr8q5a8n2iy"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_ru5uj"]
+[ext_resource type="Texture2D" uid="uid://dvb8cxepc2ipc" path="res://Assets/Items/Inventory/wood/wood_filled.png" id="2_tutb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_da1rl"]
+size = Vector2(29, 36)
+
+[node name="Wood" type="Area2D"]
+script = ExtResource("1_ru5uj")
+item_name = "Wood"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tutb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_da1rl")

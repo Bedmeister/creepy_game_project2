@@ -12,9 +12,7 @@ var can_damage = true
 func _physics_process(delta: float) -> void:
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * SPEED
-	look_at(dir)
 	move_and_slide()
-	animate()
 	
 	
 func take_damage(amount):
@@ -39,6 +37,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void: # Detects hit player
 
 func _on_timer_timeout() -> void:
 	makePath() # Replace with function body.
+<<<<<<< HEAD
 
 
 func animate():
@@ -47,3 +46,5 @@ func animate():
 		
 	else:
 		$AnimatedSprite2D.play("crawl")
+=======
+>>>>>>> 6641db7f445be5c81ac86b1f59958e350aa6349c

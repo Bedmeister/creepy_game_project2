@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ce1ajp6icq74a"]
+[gd_scene load_steps=16 format=3 uid="uid://ce1ajp6icq74a"]
 
 [ext_resource type="Texture2D" uid="uid://b7rvkxwdusb62" path="res://Assets/Player/spr_player_idle.png" id="1_7obyx"]
 [ext_resource type="Script" path="res://Scripts/Player/my_hero.gd" id="1_fvkqk"]
@@ -17,6 +17,21 @@ b = Vector2(25, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_213r4"]
 size = Vector2(41.5, 85.25)
 
+[sub_resource type="Animation" id="Animation_mxsmh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_7obyx")]
+}
+
 [sub_resource type="Animation" id="Animation_r4ptc"]
 resource_name = "attack"
 length = 0.5
@@ -33,26 +48,20 @@ tracks/0/keys = {
 "values": [ExtResource("1_7obyx"), ExtResource("5_vhxpx"), ExtResource("6_w6nvj"), ExtResource("7_1cfc8"), ExtResource("1_7obyx")]
 }
 
-[sub_resource type="Animation" id="Animation_mxsmh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_7obyx")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i6dil"]
 _data = {
 "RESET": SubResource("Animation_mxsmh"),
 "attack": SubResource("Animation_r4ptc")
 }
+
+[sub_resource type="Gradient" id="Gradient_oj34u"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_toq2m"]
+gradient = SubResource("Gradient_oj34u")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.910256, 0.106838)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
@@ -102,5 +111,12 @@ shape = SubResource("RectangleShape2D_213r4")
 libraries = {
 "": SubResource("AnimationLibrary_i6dil")
 }
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-5, -10)
+scale = Vector2(3.19158, 2.96271)
+color = Color(1, 0.187152, 0.200157, 1)
+energy = 1.8
+texture = SubResource("GradientTexture2D_toq2m")
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
