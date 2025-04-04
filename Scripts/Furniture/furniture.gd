@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if pullable:
 		if Input.is_action_pressed("pull"):
 			move_and_collide(pull_marker.global_position - global_position)

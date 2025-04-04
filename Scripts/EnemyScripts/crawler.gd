@@ -9,7 +9,7 @@ var targetNode # create var for future use of locatating hero
 var health = 5
 var can_damage = true
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * SPEED
 	move_and_slide()

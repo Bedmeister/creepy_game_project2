@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3lyhxc4h0xxd"]
+
+[ext_resource type="Script" path="res://Scripts/Items/crafting_menu.gd" id="1_7eiuu"]
+
+[node name="CraftingMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7eiuu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 328.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 328.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Crafting Menu"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="WeaponButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 25
+text = "Craft Board & Nails"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "3 Wood,  2 Nails"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CandleButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Craft Candle"
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "3 Wax"
+
+[node name="Close" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 30
+text = "Close"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/WeaponButton" to="." method="_on_weapon_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/CandleButton" to="." method="_on_candle_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Close" to="." method="_on_close_pressed"]
