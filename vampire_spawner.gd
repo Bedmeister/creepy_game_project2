@@ -1,6 +1,6 @@
 extends Node2D
 
-var spawnInterval = 600
+var spawnInterval = 1000
 var spawnTimer = spawnInterval
 var enemy = preload("res://Scenes/EnemyScenes/vampire.tscn")
 

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 50.0
+const SPEED = 70.0
 const JUMP_VELOCITY = -400.0
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
@@ -44,5 +44,6 @@ func _on_timer_timeout() -> void:
 func animate():
 	if velocity == Vector2(0,0):
 		$AnimatedSprite2D.play("idle")
+		
 	else:
 		$AnimatedSprite2D.play("crawl")

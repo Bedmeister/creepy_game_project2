@@ -9,7 +9,7 @@ light_mode = 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfckb"]
 size = Vector2(85, 52)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_t5foe")

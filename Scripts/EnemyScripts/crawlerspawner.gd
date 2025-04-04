@@ -1,8 +1,8 @@
 extends Node2D
 
-var spawnInterval = 200
+var spawnInterval = 500
 var spawnTimer = spawnInterval
-var enemy := preload("res://Scenes/EnemyScenes/crawler.tscn")
+var enemy := preload("res://crawler.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
