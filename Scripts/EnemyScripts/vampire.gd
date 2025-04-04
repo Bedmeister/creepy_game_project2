@@ -8,6 +8,7 @@ var player = null;
 var targetNode # create var for future use of locatating hero
 var health = 15
 var can_damage = true
+@onready var deathsfx: AudioStreamPlayer2D = $deathsfx
 
 func _physics_process(delta: float) -> void:
 	#rotate_enemy() #roate enemy
@@ -38,6 +39,8 @@ func take_damage(amount):
 	print("Vampire damaged! Health left:", health)
 	if health <= 0:
 		print("Vampire died!")
+		deathsfx.play()
+		await get_tree().create_timer(1.5).timeout
 		queue_free()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:

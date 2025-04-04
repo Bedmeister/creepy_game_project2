@@ -233,4 +233,4 @@ color = Color(0.244776, 0.244776, 0.244776, 1)
 position = Vector2(-152, -27)
 
 [node name="vampire" parent="." instance=ExtResource("5_dev78")]
-position = Vector2(8, -38)
+position = Vector2(49, -28)
