@@ -1,7 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bui2ql23hluso"]
 
 [ext_resource type="PackedScene" uid="uid://mpo6anrr0tev" path="res://Scenes/House/Compact_house.tscn" id="1_i85b2"]
-[ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="2_g0lcm"]
 [ext_resource type="PackedScene" uid="uid://d3wfe3xb864gl" path="res://Scenes/House/Furniture/small_dresser.tscn" id="3_uq2of"]
 [ext_resource type="PackedScene" uid="uid://g077hwinndxi" path="res://Scenes/House/Furniture/large_dresser.tscn" id="4_lwu7c"]
 [ext_resource type="PackedScene" uid="uid://xp7lkl4kctpw" path="res://Scenes/House/Furniture/table.tscn" id="5_toqt1"]
@@ -9,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dqdgish6x24gy" path="res://Scenes/House/Furniture/couch.tscn" id="7_4ynsf"]
 [ext_resource type="PackedScene" uid="uid://rdhg74yt0kbk" path="res://Scenes/House/Furniture/bed.tscn" id="8_la37x"]
 [ext_resource type="PackedScene" uid="uid://d35rqmymia4xn" path="res://Scenes/House/Furniture/bathtub.tscn" id="9_1dt30"]
-[ext_resource type="PackedScene" uid="uid://dpvi3n4mt4riy" path="res://item_spawner.tscn" id="10_jhdp7"]
-[ext_resource type="PackedScene" uid="uid://dg63pxk5l5agg" path="res://Scenes/EnemyScenes/crawler.tscn" id="11_drm5m"]
+[ext_resource type="PackedScene" path="res://item_spawner.tscn" id="10_jhdp7"]
+[ext_resource type="PackedScene" uid="uid://dg63pxk5l5agg" path="res://crawler.tscn" id="11_drm5m"]
+[ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="11_fqf01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wxu"]
 size = Vector2(363, 270)
@@ -36,8 +36,6 @@ position = Vector2(-1361, 1625)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Area2D2"]
 position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_vt13u")
-
-[node name="myHero" parent="." instance=ExtResource("2_g0lcm")]
 
 [node name="small_dresser" parent="." node_paths=PackedStringArray("pull_marker") instance=ExtResource("3_uq2of")]
 position = Vector2(732, 1024)
@@ -76,5 +74,7 @@ script = null
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("11_drm5m")]
 position = Vector2(662, 432)
+
+[node name="myHero" parent="." instance=ExtResource("11_fqf01")]
 
 [editable path="myHero"]

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 50.0
+const SPEED = 70.0
 const JUMP_VELOCITY = -400.0
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 	var dir = to_local(nav.get_next_path_position()).normalized()
 	velocity = dir * SPEED
 	move_and_slide()
+	$AnimatedSprite2D.play("crawl")
 	
 	
 func take_damage(amount):

@@ -2,8 +2,12 @@ extends CharacterBody2D
 
 <<<<<<< HEAD
 
+<<<<<<< HEAD
+const SPEED = 120.0
+=======
 const SPEED = 80.0
 const JUMP_VELOCITY = -400.0
+>>>>>>> 6641db7f445be5c81ac86b1f59958e350aa6349c
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
 var targetNode # create var for future use of locatating hero
