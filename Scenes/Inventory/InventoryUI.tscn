@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6b8rn3kh3dxm"]
 
-[ext_resource type="Script" path="res://inventory_ui.gd" id="1_gxek2"]
+[ext_resource type="Script" path="res://Scripts/Inventory/inventory_ui.gd" id="1_gxek2"]
 
 [node name="InventoryUI" type="Control"]
 layout_mode = 3
@@ -58,6 +58,21 @@ offset_bottom = 48.0
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Weapon"]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 100.0
+
 [node name="Candles" type="Panel" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Candles"]
+layout_mode = 0
+offset_right = 97.0
+offset_bottom = 100.0
+
+[node name="Label" type="Label" parent="HBoxContainer/Candles"]
+layout_mode = 0
+offset_right = 49.0
+offset_bottom = 48.0

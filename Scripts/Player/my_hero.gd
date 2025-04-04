@@ -15,6 +15,8 @@ var health = 100
 @onready var cam = $Camera2D
 
 @export var inventory: Node
+@export var candle: PackedScene
+@export var candle_duration: float = 5.0
 @onready var inventory_ui = $CanvasLayer/InventoryUI
 
 # camera shake
@@ -42,16 +44,14 @@ func _process(delta):
 		cam.offset = offset
 	else:
 		cam.offset = Vector2.ZERO
+		
+	if Input.is_action_just_pressed("place_candle"):
+		place_candle()
 
-
-	
 #Function is used to create diagonal movement
 func _get_input():
 	var  input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");
 	velocity = input_direction * SPEED
-
-
-
 
 func rotate_player(): #rotates player with mouse
 	var direction = get_global_mouse_position()
@@ -72,11 +72,14 @@ func furniture_physics():
 			rigidbody.apply_central_impulse(-collision.get_normal() * 0.25) 
 
 func perform_attack():
-	anim_player.play("attack")
-	attack_hitbox.monitoring = true
+	if inventory.has_item("Weapon"):
+		anim_player.play("attack")
+		attack_hitbox.monitoring = true
 	
-	await get_tree().create_timer(0.1).timeout
-	attack_hitbox.monitoring = false
+		await get_tree().create_timer(0.1).timeout
+		attack_hitbox.monitoring = false
+	else:
+		return
 
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	print("hit something:", area.name)
@@ -84,7 +87,6 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 		print("hit enemy")
 		area.get_parent().call("take_damage", 5)
 		shake_timer = shake_duration
-		
 
 func take_damage(amount):
 	health -= amount
@@ -95,7 +97,7 @@ func take_damage(amount):
 func die():
 	print("Player died")
 	queue_free()
-	
+
 func collect_item(item_name: String, max_stack: int) -> bool:
 	if inventory:
 		var success = inventory.add_item(item_name, max_stack)
@@ -104,4 +106,14 @@ func collect_item(item_name: String, max_stack: int) -> bool:
 		else:
 			return false
 	return true
+
+func place_candle():
+	if inventory.has_item("Candle"):
+		var candle_position = position + Vector2(100, 0)
 		
+		var candle_instance = candle.instantiate()
+		get_parent().add_child(candle_instance)
+		candle_instance.position = candle_position
+		
+		inventory.inventory["Candle"]["count"] -= 1
+		inventory.inventory_updated.emit(inventory.inventory)

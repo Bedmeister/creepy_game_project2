@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5e6cy8ksjmix"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_4sifg"]
+[ext_resource type="Script" path="res://Scripts/Items/item.gd" id="1_4sifg"]
 [ext_resource type="Texture2D" uid="uid://ctarvhpabowsw" path="res://Assets/Items/Inventory/nails/nails_filled.png" id="1_tnfhn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1kis"]

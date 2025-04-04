@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct8hr5lvk1kk"]
+
+[ext_resource type="Script" path="res://Scripts/Items/crafting_desk.gd" id="1_7468r"]
+[ext_resource type="Texture2D" uid="uid://cfyj3y1eumlh2" path="res://Assets/Furniture/chest/chest_closed.png" id="2_s8xha"]
+[ext_resource type="PackedScene" uid="uid://b3lyhxc4h0xxd" path="res://Scenes/Items/crafting_menu.tscn" id="3_nskpr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqfpj"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm2as"]
+size = Vector2(144, 112)
+
+[node name="CraftingDesk" type="StaticBody2D"]
+script = ExtResource("1_7468r")
+crafting_menu = NodePath("CraftingMenu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_s8xha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fqfpj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_vm2as")
+
+[node name="CraftingMenu" parent="." instance=ExtResource("3_nskpr")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

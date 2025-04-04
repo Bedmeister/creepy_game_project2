@@ -8,9 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://dqdgish6x24gy" path="res://Scenes/House/Furniture/couch.tscn" id="7_4ynsf"]
 [ext_resource type="PackedScene" uid="uid://rdhg74yt0kbk" path="res://Scenes/House/Furniture/bed.tscn" id="8_la37x"]
 [ext_resource type="PackedScene" uid="uid://d35rqmymia4xn" path="res://Scenes/House/Furniture/bathtub.tscn" id="9_1dt30"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://dpvi3n4mt4riy" path="res://item_spawner.tscn" id="10_jhdp7"]
 [ext_resource type="PackedScene" uid="uid://dg63pxk5l5agg" path="res://crawler.tscn" id="11_drm5m"]
+=======
+[ext_resource type="PackedScene" uid="uid://dpvi3n4mt4riy" path="res://Scenes/Items/item_spawner.tscn" id="10_jhdp7"]
+>>>>>>> MadelynGit
 [ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="11_fqf01"]
+[ext_resource type="PackedScene" uid="uid://ct8hr5lvk1kk" path="res://Scenes/Inventory/crafting_desk.tscn" id="12_bv15k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wxu"]
 size = Vector2(363, 270)
@@ -69,12 +74,13 @@ pull_marker = NodePath("../myHero/puller/pull_marker")
 position = Vector2(671, 708)
 pull_marker = NodePath("../myHero/puller/pull_marker")
 
-[node name="ItemSpawner" parent="." instance=ExtResource("10_jhdp7")]
-script = null
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("11_drm5m")]
-position = Vector2(662, 432)
-
 [node name="myHero" parent="." instance=ExtResource("11_fqf01")]
+
+[node name="ItemSpawner" parent="." node_paths=PackedStringArray("spawn_areas") instance=ExtResource("10_jhdp7")]
+spawn_areas = [NodePath("../TileMap/Area2D"), NodePath("../TileMap/Area2D2")]
+
+[node name="CraftingDesk" parent="." instance=ExtResource("12_bv15k")]
+position = Vector2(507, 977)
+scale = Vector2(0.75, 0.75)
 
 [editable path="myHero"]

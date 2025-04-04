@@ -1,12 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://ce1ajp6icq74a"]
+[gd_scene load_steps=19 format=3 uid="uid://ce1ajp6icq74a"]
 
 [ext_resource type="Texture2D" uid="uid://b7rvkxwdusb62" path="res://Assets/Player/spr_player_idle.png" id="1_7obyx"]
 [ext_resource type="Script" path="res://Scripts/Player/my_hero.gd" id="1_fvkqk"]
+[ext_resource type="PackedScene" uid="uid://brma7fkroxtxj" path="res://Scenes/Items/candle.tscn" id="2_5bjsk"]
 [ext_resource type="Texture2D" uid="uid://dyjsxytbru804" path="res://Assets/Player/Light.png" id="2_ul8ox"]
 [ext_resource type="Script" path="res://Scripts/Player/point_light_2d.gd" id="4_2w8kg"]
 [ext_resource type="Texture2D" uid="uid://bxi6oskdbax8x" path="res://Assets/Player/animations/melee_swing/spr_player_back_swing.png" id="5_vhxpx"]
 [ext_resource type="Texture2D" uid="uid://yudjx5sxrlp7" path="res://Assets/Player/animations/melee_swing/spr_player_front_swing.png" id="6_w6nvj"]
 [ext_resource type="Texture2D" uid="uid://d1qd7m03t450e" path="res://Assets/Player/animations/melee_swing/spr_player_impact_first.png" id="7_1cfc8"]
+[ext_resource type="PackedScene" uid="uid://b7534l4vavfa2" path="res://Scenes/Inventory/Inventory.tscn" id="8_jd6f0"]
+[ext_resource type="PackedScene" uid="uid://6b8rn3kh3dxm" path="res://Scenes/Inventory/InventoryUI.tscn" id="9_l5bja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8vtb"]
 size = Vector2(29, 41)
@@ -63,9 +66,11 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.910256, 0.106838)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("inventory") groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_fvkqk")
+inventory = NodePath("Inventory")
+candle = ExtResource("2_5bjsk")
 
 [node name="Sprite2D" type="Sprite2D" parent="." groups=["player"]]
 rotation = 1.5708
@@ -118,5 +123,15 @@ scale = Vector2(3.19158, 2.96271)
 color = Color(1, 0.187152, 0.200157, 1)
 energy = 1.8
 texture = SubResource("GradientTexture2D_toq2m")
+
+[node name="Inventory" parent="." instance=ExtResource("8_jd6f0")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InventoryUI" parent="CanvasLayer" instance=ExtResource("9_l5bja")]
+offset_left = 344.0
+offset_top = 544.0
+offset_right = 344.0
+offset_bottom = 544.0
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
