@@ -1,10 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg63pxk5l5agg"]
+[gd_scene load_steps=10 format=3 uid="uid://dg63pxk5l5agg"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/crawler.gd" id="1_yw5q8"]
 [ext_resource type="Texture2D" uid="uid://disufs56gyfoc" path="res://Assets/Enemies/Crawler/idle.png" id="2_igxi3"]
+[ext_resource type="Texture2D" uid="uid://baofxa84cbcv8" path="res://Assets/Enemies/Crawler/crawler_3.png" id="3_dtb0g"]
+[ext_resource type="AudioStream" uid="uid://dxn2c5mfdtork" path="res://Assets/Audio/hearbeat-sound-with-gurgling-17556.mp3" id="4_6lvaf"]
+[ext_resource type="AudioStream" uid="uid://cqkb4phj81m86" path="res://Assets/Audio/grunt-1-84550.mp3" id="5_wpcgr"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8ldbe"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3kp52"]
 light_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jm13"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igxi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dtb0g")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_igxi3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bspbo"]
 size = Vector2(69, 130)
@@ -21,9 +46,12 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_yw5q8")
 
-[node name="AnimatedSprite2D" type="Sprite2D" parent="."]
-material = SubResource("CanvasItemMaterial_8ldbe")
-texture = ExtResource("2_igxi3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_3kp52")
+sprite_frames = SubResource("SpriteFrames_7jm13")
+animation = &"crawl"
+frame = 1
+frame_progress = 0.939584
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -1)
@@ -42,6 +70,17 @@ debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="heartbeatsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6lvaf")
+volume_db = 10.0
+autoplay = true
+max_distance = 550.0
+
+[node name="deathsfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wpcgr")
+volume_db = 3.0
+max_distance = 550.0
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

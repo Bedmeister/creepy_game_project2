@@ -1,22 +1,44 @@
 extends Node2D
 
-var spawnInterval = 1000
+var spawnInterval = 1500
 var spawnTimer = spawnInterval
 var enemy = preload("res://Scenes/EnemyScenes/vampire2.tscn")
-
+var enemies: Array = []
+var can_spawn = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
-	spawnTimer -= 1
-	if spawnTimer <1:
-		spawnTimer =spawnInterval
+	if can_spawn == true :
+		spawnTimer -= 1
+		if spawnTimer < 1:
+			spawnTimer = spawnInterval
+			spawn_enemy()
+	
+func spawn_enemy() -> void:
+	var instance = enemy.instantiate()
+	instance.position = position
+	get_tree().current_scene.add_child(instance)
+	enemies.append(instance)
+	
+	instance.died.connect(_on_vampire_died)
+	
+func kill_all_enemies() -> void:
+	for enemy_instance in enemies:
+		enemy_instance.queue_free()
+	enemies.clear()
+
+func _on_vampire_died(vampire: CharacterBody2D) -> void:
+	enemies.erase(vampire)
+	vampire.queue_free()
 		
-		var instance = enemy.instantiate()
-		instance.position = position
-		get_tree().current_scene.add_child(instance)
+func _on_disable_spawn_pressed() -> void:
+	can_spawn = false
+	kill_all_enemies()
+	
+func _on_enable_spawn_pressed() -> void:
+	can_spawn = true

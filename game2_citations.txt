@@ -1,0 +1,10 @@
+Noah did the furniture sprites and physics, character and enemy sprites & animations, and the pull mechanic. Used this video as reference: https://youtu.be/SJuScDavstM?si=7f6oSVhAAl7P52-r
+Art made with Krita
+
+Demetrius worked on the level design using TileMaps. Also worked on player/enemy attacking (with camera shake and audio!) and health. Used https://opengameart.org/ for TileMap Assets
+
+Nehemias worked on player movement, player-light functionality, and he figured out how various light layers work. Worked on enemy spawners and logic for enemies only appearing in the light. Also looked into some of the sound effects for enemies and damage taken from Pixabay.
+
+Salman worked on the day/night system which we unfortunately could not get implemented, but he did spend a good amount of time on it. Used this video as reference: https://www.youtube.com/watch?v=EtAhVlaM5xU
+
+Madelyn worked on the inventory system, items, candles, and crafting system. Also worked on the cheat codes. Inspiration from https://www.youtube.com/watch?v=WX34wvT5vLE&t=1s, https://gameidea.org/2024/08/26/make-inventory-system-in-godot/#Inventory_set-up, and other online resources. Also made the background song with BeepBox

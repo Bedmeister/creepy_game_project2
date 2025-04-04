@@ -32,7 +32,7 @@ func add_item(item_name: String, max_stack: int) -> bool:
 			emit_signal("inventory_updated", inventory)
 		else:
 			return false
-	elif inventory.size() < MAX_SLOTS:
+	elif inventory.size() - (("Weapon" in inventory) as int) - (("Candle" in inventory) as int) < MAX_SLOTS:
 		inventory[item_name] = {"count": 1, "max": max_stack}
 		emit_signal("inventory_updated", inventory)
 	else:
@@ -43,3 +43,12 @@ func add_item(item_name: String, max_stack: int) -> bool:
 	
 func has_item(item_name: String) -> bool:
 	return item_name in inventory and inventory[item_name]["count"] > 0
+	
+func clear_inventory():
+	for item_name in inventory.keys():
+		inventory[item_name]["count"] = 0
+
+	inventory.erase("Weapon")
+	inventory.erase("Candle")
+	
+	emit_signal("inventory_updated", inventory)

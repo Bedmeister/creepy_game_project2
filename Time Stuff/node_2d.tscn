@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://38mnywagr34e"]
+
+[ext_resource type="Script" path="res://directional_light_2d.gd" id="1_jltoi"]
+[ext_resource type="Script" path="res://date_time.gd" id="2_r7e58"]
+
+[sub_resource type="Resource" id="Resource_d4klp"]
+script = ExtResource("2_r7e58")
+seconds = 0
+minutes = 0
+hours = 0
+days = 0
+
+[sub_resource type="Resource" id="Resource_lu8e4"]
+script = ExtResource("2_r7e58")
+seconds = 0
+minutes = 0
+hours = 0
+days = 0
+
+[node name="World" type="Node2D"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+blend_mode = 2
+script = ExtResource("1_jltoi")
+day_color = Color(1, 1, 1, 1)
+night_color = Color(0.188235, 0.0705882, 0.388235, 1)
+day_start = SubResource("Resource_d4klp")
+night_start = SubResource("Resource_lu8e4")

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://st460yxx34yn"]
+
+[ext_resource type="Texture2D" uid="uid://di7yt1n8b0dpr" path="res://dark.png" id="1_k4trc"]
+[ext_resource type="Script" path="res://time_gui.gd" id="1_r8337"]
+[ext_resource type="LabelSettings" uid="uid://cefd5lbyleb38" path="res://label_settings.tres" id="2_hsg4n"]
+[ext_resource type="FontFile" uid="uid://csbw256oer5ue" path="res://Kenney Pixel.ttf" id="3_t3ff1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lp0ms"]
+font = ExtResource("3_t3ff1")
+font_size = 32
+font_color = Color(0.854902, 0.858824, 0.870588, 1)
+
+[node name="TimeGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 119.0
+offset_bottom = 70.0
+script = ExtResource("1_r8337")
+
+[node name="Background" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 118.0
+offset_bottom = 69.0
+texture = ExtResource("1_k4trc")
+region_rect = Rect2(299.966, 500.741, 99.2766, 97.92)
+patch_margin_top = 15
+patch_margin_right = 1
+patch_margin_bottom = 1
+
+[node name="Day Control" type="Control" parent="."]
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 119.0
+offset_bottom = 70.0
+
+[node name="Label" type="Label" parent="Day Control"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 37.0
+offset_right = 107.0
+offset_bottom = 63.0
+text = "999"
+label_settings = ExtResource("2_hsg4n")
+horizontal_alignment = 2
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="Day Control"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 48.0
+offset_bottom = 34.0
+text = "Day"
+label_settings = SubResource("LabelSettings_lp0ms")
+metadata/_edit_lock_ = true
+
+[node name="Control2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

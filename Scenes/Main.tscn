@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bui2ql23hluso"]
+[gd_scene load_steps=17 format=3 uid="uid://bui2ql23hluso"]
 
 [ext_resource type="PackedScene" uid="uid://mpo6anrr0tev" path="res://Scenes/House/Compact_house.tscn" id="1_i85b2"]
 [ext_resource type="PackedScene" uid="uid://d3wfe3xb864gl" path="res://Scenes/House/Furniture/small_dresser.tscn" id="3_uq2of"]
@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dpvi3n4mt4riy" path="res://Scenes/Items/item_spawner.tscn" id="10_jhdp7"]
 [ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="11_fqf01"]
 [ext_resource type="PackedScene" uid="uid://ct8hr5lvk1kk" path="res://Scenes/Inventory/crafting_desk.tscn" id="12_bv15k"]
+[ext_resource type="AudioStream" uid="uid://hqxri3sthjwu" path="res://Assets/Audio/Background Music.wav" id="12_yqnk8"]
+[ext_resource type="PackedScene" uid="uid://bdkuj0ilg7pny" path="res://Scenes/EnemyScenes/vampire_spawner.tscn" id="14_sj6s5"]
+[ext_resource type="PackedScene" uid="uid://bw3b73d7eo3y3" path="res://Scenes/EnemyScenes/crawlerSpawner.tscn" id="15_t44i5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wxu"]
 size = Vector2(363, 270)
@@ -77,5 +80,64 @@ spawn_areas = [NodePath("../TileMap/Area2D"), NodePath("../TileMap/Area2D2")]
 [node name="CraftingDesk" parent="." instance=ExtResource("12_bv15k")]
 position = Vector2(507, 977)
 scale = Vector2(0.75, 0.75)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_yqnk8")
+volume_db = -15.0
+autoplay = true
+max_distance = 1e+06
+attenuation = 1e-05
+
+[node name="vampireSpawner" parent="." instance=ExtResource("14_sj6s5")]
+position = Vector2(1260, 1086)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="vampireSpawner"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="vampireSpawner/CanvasLayer"]
+offset_top = 248.0
+offset_right = 142.0
+offset_bottom = 314.0
+
+[node name="DisableSpawn" type="Button" parent="vampireSpawner/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Disable Vampires"
+
+[node name="EnableSpawn" type="Button" parent="vampireSpawner/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Enable Vampires"
+
+[node name="Node2D" parent="." instance=ExtResource("15_t44i5")]
+position = Vector2(1364, 464)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node2D"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 176.0
+offset_right = -439.0
+offset_bottom = 248.0
+grow_horizontal = 2
+
+[node name="DisableSpawn" type="Button" parent="Node2D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+focus_mode = 0
+text = "Disable Crawlers"
+
+[node name="EnableSpawn" type="Button" parent="Node2D/CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+text = "Enable Crawlers"
+
+[connection signal="pressed" from="vampireSpawner/CanvasLayer/VBoxContainer/DisableSpawn" to="vampireSpawner" method="_on_disable_spawn_pressed"]
+[connection signal="pressed" from="vampireSpawner/CanvasLayer/VBoxContainer/EnableSpawn" to="vampireSpawner" method="_on_enable_spawn_pressed"]
+[connection signal="pressed" from="Node2D/CanvasLayer/VBoxContainer/DisableSpawn" to="Node2D" method="_on_disable_spawn_pressed"]
+[connection signal="pressed" from="Node2D/CanvasLayer/VBoxContainer/EnableSpawn" to="Node2D" method="_on_enable_spawn_pressed"]
 
 [editable path="myHero"]

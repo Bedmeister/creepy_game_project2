@@ -1,20 +1,17 @@
 extends CharacterBody2D
 
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 const SPEED = 120.0
-=======
-const SPEED = 80.0
-const JUMP_VELOCITY = -400.0
->>>>>>> 6641db7f445be5c81ac86b1f59958e350aa6349c
+
 var player = null;
 @onready var nav := $NavigationAgent2D as NavigationAgent2D # nav agent used to make move toward pos. of hero in regards to environment
 var targetNode # create var for future use of locatating hero
 var health = 15
 var can_damage = true
+@onready var deathsfx: AudioStreamPlayer2D = $deathsfx
 
-func _physics_process(delta: float) -> void:
+signal died(vampire: CharacterBody2D)
+
+func _physics_process(_delta: float) -> void:
 	#rotate_enemy() #roate enemy
 
 	var dir = to_local(nav.get_next_path_position()).normalized()
@@ -27,12 +24,6 @@ func rotate_enemy(): #rotates enemy t 0player
 	var direction = (tp -position).normalized()
 	var angle = direction.angle()
 	rotation = angle
-	
-func take_damage(amount):
-	health -= amount
-	if health <= 0:
-		print("vampire died")
-		queue_free()
 
 
 func makePath() -> void: # method to create path
@@ -40,48 +31,18 @@ func makePath() -> void: # method to create path
 	if targetNode != null:
 		nav.target_position = targetNode.global_position
 
-func _on_hitbox_body_entered(body: Node2D) -> void: # Detects hit player
-	if body.is_in_group("player") and can_damage:
-		body.call("take_damage", 5)
-		can_damage = false
-		await get_tree().create_timer(1.0).timeout
-		can_damage = true
-
 
 func _on_timer_timeout() -> void:
 	makePath() # Creates path for enemy to follow
-=======
-const SPEED = 90.0
-var player = null
-var health = 10
-var can_damage = true
-
-@onready var nav := $NavigationAgent2D
-var targetNode
-
-func _physics_process(delta):
-	if nav.is_navigation_finished():
-		velocity = Vector2.ZERO
-		return
-
-	var next_pos = nav.get_next_path_position()
-	var dir = to_local(next_pos).normalized()
-	velocity = dir * SPEED
-	move_and_slide()
-
-func makePath() -> void:
-	targetNode = get_node_or_null("/root/Main/myHero")
-	if targetNode:
-		nav.target_position = targetNode.global_position
-
-func _on_timer_timeout() -> void:
-	makePath()
 
 func take_damage(amount):
 	health -= amount
 	print("Vampire damaged! Health left:", health)
 	if health <= 0:
 		print("Vampire died!")
+		deathsfx.play()
+		await get_tree().create_timer(1.5).timeout
+		emit_signal("died", self)
 		queue_free()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
@@ -91,8 +52,3 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 		can_damage = false
 		await get_tree().create_timer(1.0).timeout
 		can_damage = true
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
->>>>>>> 24ec96714fc40df6d39eeb8faba6cad37be6aca1

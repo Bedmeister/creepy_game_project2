@@ -8,21 +8,31 @@ var min_force = 15
 var max_force = 100
 
 # Health and Attack
-var health = 100
+var max_health = 100
+var player_health = max_health
+
+@onready var health_bar = $CanvasLayer2/ProgressBar
+@onready var audioSwing: AudioStreamPlayer2D = $AudioStreamPlayer2D #for bat swing sfx
 
 @onready var attack_hitbox = $AttackHitbox
 @onready var anim_player = $AnimationPlayer
 @onready var cam = $Camera2D
+@onready var inventory_ui = $CanvasLayer/InventoryUI
 
 @export var inventory: Node
 @export var candle: PackedScene
 @export var candle_duration: float = 5.0
-@onready var inventory_ui = $CanvasLayer/InventoryUI
 
 # camera shake
 var shake_timer = 0.0
 var shake_strength = 10.0  
 var shake_duration = 0.2  
+
+var infinite_health = false
+
+func _ready():
+	health_bar.max_value = max_health
+	health_bar.value = player_health
 
 func _physics_process(_delta: float) -> void:
 	rotate_player()
@@ -34,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 func _process(delta):
 	if Input.is_action_just_pressed("attack"):
 		perform_attack()
-		
+	
 	if shake_timer > 0:
 		shake_timer -= delta
 		var offset = Vector2(
@@ -74,6 +84,7 @@ func furniture_physics():
 func perform_attack():
 	if inventory.has_item("Weapon"):
 		anim_player.play("attack")
+		audioSwing.play()
 		attack_hitbox.monitoring = true
 	
 		await get_tree().create_timer(0.1).timeout
@@ -89,13 +100,18 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 		shake_timer = shake_duration
 
 func take_damage(amount):
-	health -= amount
-	print("Player health:", health)
-	if health <= 0:
-		die()
+	if infinite_health == true:
+		return
+	else:
+		player_health -= amount
+		update_health(player_health)
+		print("Player health:", player_health)
+		if player_health <= 0:
+			die()
 
 func die():
 	print("Player died")
+	get_tree().quit()
 	queue_free()
 
 func collect_item(item_name: String, max_stack: int) -> bool:
@@ -117,3 +133,16 @@ func place_candle():
 		
 		inventory.inventory["Candle"]["count"] -= 1
 		inventory.inventory_updated.emit(inventory.inventory)
+		
+func update_health(new_health: int) -> void:
+	player_health = new_health
+	health_bar.value = player_health
+	
+
+func _on_infinite_health_pressed() -> void:
+	infinite_health = true
+	print("infinite health!")
+
+func _on_finite_health_pressed() -> void:
+	infinite_health = false
+	print("regular health")
