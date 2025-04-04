@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ci76voo3jlxsr" path="res://Assets/Enemies/Vampire/spr_vampire_idle.png" id="2_a2juq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2yuw3"]
+light_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erbsw"]
 size = Vector2(20, 15.4554)

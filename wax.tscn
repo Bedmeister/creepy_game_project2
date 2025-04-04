@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://btox8iu8e7rj4"]
+
+[ext_resource type="Texture2D" uid="uid://prwyh33cr1m4" path="res://Assets/Items/Inventory/wax/wax_filled.png" id="1_fom3o"]
+[ext_resource type="Script" path="res://item.gd" id="1_m0t7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pptup"]
+size = Vector2(66, 55)
+
+[node name="Wax" type="Area2D"]
+script = ExtResource("1_m0t7i")
+item_name = "Wax"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_fom3o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 1.5)
+shape = SubResource("RectangleShape2D_pptup")

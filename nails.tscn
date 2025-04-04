@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5e6cy8ksjmix"]
+
+[ext_resource type="Script" path="res://item.gd" id="1_4sifg"]
+[ext_resource type="Texture2D" uid="uid://ctarvhpabowsw" path="res://Assets/Items/Inventory/nails/nails_filled.png" id="1_tnfhn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1kis"]
+radius = 18.0278
+
+[node name="Nails" type="Area2D"]
+script = ExtResource("1_4sifg")
+item_name = "Nails"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tnfhn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b1kis")

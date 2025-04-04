@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg63pxk5l5agg"]
+[gd_scene load_steps=6 format=3 uid="uid://dg63pxk5l5agg"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/crawler.gd" id="1_yw5q8"]
 [ext_resource type="Texture2D" uid="uid://disufs56gyfoc" path="res://Assets/Enemies/Crawler/idle.png" id="2_igxi3"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8ldbe"]
+light_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bspbo"]
 size = Vector2(69, 130)
@@ -19,6 +22,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_yw5q8")
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_8ldbe")
 texture = ExtResource("2_igxi3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

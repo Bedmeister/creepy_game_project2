@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
-
 # BASIC MOVEMENT
 var SPEED = 300.0
-
 
 #furniture push physics
 var min_force = 15
@@ -16,12 +14,15 @@ var health = 100
 @onready var anim_player = $AnimationPlayer
 @onready var cam = $Camera2D
 
+@export var inventory: Node
+@onready var inventory_ui = $CanvasLayer/InventoryUI
+
 # camera shake
 var shake_timer = 0.0
 var shake_strength = 10.0  
 var shake_duration = 0.2  
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	rotate_player()
 	slow_player()
 	_get_input()
@@ -67,7 +68,7 @@ func furniture_physics():
 		var collision = get_slide_collision(index)
 		if collision.get_collider() is RigidBody2D:
 			var rigidbody = collision.get_collider() as RigidBody2D
-			var push_force = (15 * velocity.length() / SPEED) + min_force
+			#var push_force = (15 * velocity.length() / SPEED) + min_force
 			rigidbody.apply_central_impulse(-collision.get_normal() * 0.25) 
 
 func perform_attack():
@@ -95,3 +96,12 @@ func die():
 	print("Player died")
 	queue_free()
 	
+func collect_item(item_name: String, max_stack: int) -> bool:
+	if inventory:
+		var success = inventory.add_item(item_name, max_stack)
+		if success:
+			return true
+		else:
+			return false
+	return true
+		
