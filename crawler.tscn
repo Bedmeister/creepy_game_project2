@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://dg63pxk5l5agg"]
+[gd_scene load_steps=10 format=3 uid="uid://dg63pxk5l5agg"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/crawler.gd" id="1_yw5q8"]
 [ext_resource type="Texture2D" uid="uid://disufs56gyfoc" path="res://Assets/Enemies/Crawler/idle.png" id="2_igxi3"]
 [ext_resource type="Texture2D" uid="uid://baofxa84cbcv8" path="res://Assets/Enemies/Crawler/crawler_3.png" id="3_7fx42"]
+[ext_resource type="AudioStream" uid="uid://dohqudxqbfgm2" path="res://walk-on-grass-1-291984.mp3" id="4_4klv8"]
+[ext_resource type="AudioStream" uid="uid://cjjkiyg0uv2d5" path="res://gurgling-monster-65641.mp3" id="5_hl41h"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3kp52"]
+light_mode = 2
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7jm13"]
 animations = [{
@@ -42,8 +47,11 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_yw5q8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_3kp52")
 sprite_frames = SubResource("SpriteFrames_7jm13")
-animation = &"idle"
+animation = &"crawl"
+frame = 1
+frame_progress = 0.939584
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, -1)
@@ -62,6 +70,20 @@ debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4klv8")
+volume_db = 5.0
+autoplay = true
+max_distance = 550.0
+bus = &"sfxgrass"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_hl41h")
+volume_db = 3.0
+autoplay = true
+max_distance = 550.0
+bus = &"crawler"
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

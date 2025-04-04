@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcgmm3kwwoixs"]
+[gd_scene load_steps=13 format=3 uid="uid://bcgmm3kwwoixs"]
 
 [ext_resource type="Texture2D" uid="uid://deiaiekk627lj" path="res://icon.svg" id="1_8diuv"]
 [ext_resource type="Texture2D" uid="uid://bt5x8ovdlsd84" path="res://Assets/Tilemaps/brickTileset.png" id="2_jl7qp"]
+[ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="4_vk2ha"]
+[ext_resource type="PackedScene" uid="uid://dia4muyeiuhae" path="res://Scenes/EnemyScenes/vampire2.tscn" id="5_dev78"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_t5ue7"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -226,3 +228,9 @@ layer_0/tile_data = PackedInt32Array(-851985, 0, 0, -786449, 0, 1, -720913, 0, 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_vk2ha")]
+position = Vector2(-152, -27)
+
+[node name="vampire" parent="." instance=ExtResource("5_dev78")]
+position = Vector2(8, -38)

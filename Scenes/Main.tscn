@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqdgish6x24gy" path="res://Scenes/House/Furniture/couch.tscn" id="7_4ynsf"]
 [ext_resource type="PackedScene" uid="uid://rdhg74yt0kbk" path="res://Scenes/House/Furniture/bed.tscn" id="8_la37x"]
 [ext_resource type="PackedScene" uid="uid://d35rqmymia4xn" path="res://Scenes/House/Furniture/bathtub.tscn" id="9_1dt30"]
-[ext_resource type="PackedScene" path="res://item_spawner.tscn" id="10_jhdp7"]
+[ext_resource type="PackedScene" uid="uid://dpvi3n4mt4riy" path="res://item_spawner.tscn" id="10_jhdp7"]
 [ext_resource type="PackedScene" uid="uid://dg63pxk5l5agg" path="res://crawler.tscn" id="11_drm5m"]
 [ext_resource type="PackedScene" uid="uid://ce1ajp6icq74a" path="res://Scenes/Player/my_hero.tscn" id="11_fqf01"]
 

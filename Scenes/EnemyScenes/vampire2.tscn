@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dia4muyeiuhae"]
+[gd_scene load_steps=6 format=3 uid="uid://dia4muyeiuhae"]
 
 [ext_resource type="Script" path="res://Scripts/EnemyScripts/vampire.gd" id="1_w4kch"]
 [ext_resource type="Texture2D" uid="uid://ci76voo3jlxsr" path="res://Assets/Enemies/Vampire/spr_vampire_idle.png" id="2_a2juq"]
+[ext_resource type="AudioStream" uid="uid://dxn2c5mfdtork" path="res://hearbeat-sound-with-gurgling-17556.mp3" id="3_46ljm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2yuw3"]
 light_mode = 2
@@ -37,6 +38,11 @@ debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_46ljm")
+volume_db = 15.0
+autoplay = true
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
